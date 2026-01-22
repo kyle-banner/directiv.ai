@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -158,6 +159,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="nav">
@@ -167,37 +169,69 @@
 
         <h1 class="title">Directiv.ai Blog</h1>
         <p class="subtitle">
-            Short field notes on agentic systems, deployments, and modernizing code-driven products.
-            Add new posts by duplicating the <code>&lt;article class="post"&gt;</code> block below.
+            Short field notes on agentic systems, deployments, and modernizing code-driven products
         </p>
 
         <!-- Duplicate this article block for each new post -->
         <article class="post">
-            <h2 class="post-title">Shipping Reliable Agents in Production</h2>
-            <div class="post-meta">September 12, 2024 - 6 min read</div>
+            <h2 class="post-title">GenAI Isn't the Problem. Your Architecture Is.</h2>
+            <div class="post-meta">January 22, 2026 - 8 min read</div>
             <div class="post-block">
                 <div class="post-body">
-                    <p><strong>What changes when agents move from demos to production?</strong> We obsess over
-                        traceability, guardrails, and the right KPIs to keep them on track.</p>
-                    <p>We especially like the evaluation approach outlined by the
-                        <a href="https://openai.com" target="_blank" rel="noopener noreferrer">OpenAI team</a>
-                        because it anchors experiments to measurable outcomes.</p>
-                    <p>If you want a deeper dive on tooling decisions, we walk through our blueprint in
-                        <a href="https://github.com" target="_blank" rel="noopener noreferrer">this GitHub note</a>.</p>
-                    <div class="cta-row">
-                        <a class="cta" href="mailto:kyle@directiv.ai">Start a project</a>
-                        <a class="cta" href="index.html">Company overview</a>
-                    </div>
+                    <p>In <em>The Hitchhiker's Guide to the Galaxy</em>, the Infinite Improbability Drive is the core of
+                        The Heart of Gold, the crew's interstellar spaceship. It's the key component that makes wildly
+                        unlikely jumps possible in an instant while the ship itself provides structure, controls, and
+                        safety.</p>
+                    <p>An LLM plays the same role as the drive: it generates powerful, probabilistic possibilities in an
+                        instance. But the LLM cannot own state, enforce rules, or safely handle failure on its own. When
+                        you mistake the drive for the ship, you get chaos. When you mistake the LLM for your app, you
+                        get chaos. However, if the drive is contained within a well-built space ship with navigation
+                        controls and a competent pilot, you get where you want to go in an instant. Similarly, if you
+                        can contain your LLM inside a deterministic application, you get something that actually
+                        survives first contact with the user in production.</p>
+                    <p>The Heart of Gold didn't need a better drive, and enterprises don't need a smarter model.
+                        Enterprises need deterministic systems that can safely contain probabilistic components.</p>
+                    <p>In 2026 most enterprise GenAI app failures are not model quality problems. These failures are a
+                        result of determinism and control-plane problems. Enterprises are trying to apply probabilistic
+                        systems to deterministic workflows without introducing the missing architectural components.</p>
+                    <p>For an effective system using GenAI, you need deterministic envelopes around probabilistic
+                        cores. LLMs should be pure functions inside a deterministic orchestration layer. Inputs, tool
+                        calls, outputs, and side effects must be versioned, replayable, and diffable.</p>
+                    <p>The LLM should never be allowed to directly mutate enterprise systems. The model should only
+                        propose actions inside a deterministic orchestration layer that enforces policy, versioning,
+                        idempotency, and evaluation gates.</p>
+                    <p>This is where policy engines like Open Policy Agent fit cleanly. OPA gives you a deterministic
+                        decision point: Is this action allowed? Does it require approval? What constraints apply? The
+                        model doesn't answer those questions. Your architecture does.</p>
+                    <p>Every input, tool call, and output should be written to an append-only run ledger so executions
+                        are replayable and auditable. Probabilistic systems may only propose commands; deterministic
+                        systems decide and record. Side effects happen only through deterministic tool executors with
+                        idempotency keys (so retries do not duplicate actions), and higher-risk actions are routed to a
+                        human approval queue.</p>
+                    <figure>
+                        <img src="assets/blog/llm-in-deterministic-system.png"
+                            alt="LLM inside a deterministic orchestration system with policy and logging" />
+                        <figcaption>Keep probabilistic cores inside deterministic envelopes.</figcaption>
+                    </figure>
+                    <p>And yes, it's tempting to say “we'll just route everything to a human.” That feels safe, but it
+                        creates its own failure modes. More on that in a future post.</p>
+                    <p>GenAI feels wrong in enterprises because it is being sprayed across workflows without changing
+                        the underlying system architecture. We are inserting probabilistic components into environments
+                        that were designed for determinism, auditability, and control. Then we are pretending nothing
+                        needs to change.</p>
+                    <p>This is not an AI maturity problem. It is a systems design failure. GenAI feels wrong in
+                        enterprises because we're treating it like the app itself when it should be treated more like
+                        infrastructure.</p>
+                    <p>The companies getting this right aren't “using more AI.” They're redesigning the systems around
+                        AI. They know that probabilistic systems should only propose commands; deterministic systems
+                        decide and record.</p>
+                    <p>Get this right and you're the Heart of Gold. Get it wrong and you're the bowl of petunias, with
+                        just enough time for one last thought: “oh no, not again.” Want more? Let's nerd out together
+                        at <a href="mailto:kyle@directiv.ai">kyle@directiv.ai</a>.</p>
                 </div>
-                <figure>
-                    <img src="assets/blog/production-pipeline.png" alt="Pipeline diagram for reliable agent delivery" />
-                    <figcaption>
-                        Replace the PNG above with your own. Store images in <code>assets/blog/</code>
-                        and reference them with a relative path.
-                    </figcaption>
-                </figure>
             </div>
         </article>
     </div>
 </body>
+
 </html>
