@@ -203,11 +203,14 @@
             <div class="post-block">
                 <div class="post-body">
                     <p>In <em>The Hitchhiker's Guide to the Galaxy</em>, the Infinite Improbability Drive is the core of
-                        the Heart of Gold, the crew's interstellar spaceship. When activated, it routinely causes wildly
+                        the Heart of Gold, the crew's interstellar spaceship. When activated the Infinite Improbability
+                        Drive routinely causes wildly
                         improbable and chaotic events, like turning missiles into a whale and a bowl of petunias. It's a
                         notoriously unreliable and dangerous technology that can change the physical state of the ship
-                        and its crew. And yet, it's also the component that makes instantaneous, universe-bending jumps
-                        possible. The Heart of Gold itself surrounds the Infinite Improbability Drive and provides
+                        and its crew. And yet, it's also the component of the ship that makes instantaneous,
+                        universe-bending jumps
+                        possible for the Heart of Gold. The rest of the ship surrounds the Infinite Improbability Drive
+                        and provides
                         structure,
                         controls, and safety for its crew (most of the time).</p>
 
@@ -218,18 +221,20 @@
                     </div>
 
                     <p>In your AI-enabled applications, an LLM plays the same role as the drive. It generates powerful,
-                        probabilistic answers at incredible speed. What the LLM cannot do is own state, enforce rules,
+                        probabilistic answers at incredible speed. The rest of your application needs to provide
+                        the same things as the Heart of Gold for the users: structure, controls, and safety. The LLM can
+                        produce incredible results, but the LLM cannot own state, enforce rules,
                         or
                         safely recover from failure on its own. That responsibility belongs to the rest of the
-                        application. In this metaphor that's the spaceship. When an LLM is boxed inside a system with
+                        application. When an LLM is narrowly focused inside of a system with
                         clear execution rules and
                         control points, you end up with something that might just actually provide value in production.
                     </p>
 
                     <p>In 2026, most enterprise GenAI application failures are not model-quality problems. They're
                         control-plane problems. Organizations are dropping probabilistic systems into workflows that
-                        were built to be predictable and auditable, without adding the architectural pieces those
-                        workflows depend on.</p>
+                        were built to be predictable and auditable without adding the architectural pieces to protect
+                        the rest of the system from the new chaos.</p>
 
                     <p>If you want LLMs to play a core role in your systems, you need a clear separation of
                         responsibilities. The model should behave like a pure function inside a workflow engine that
@@ -247,7 +252,7 @@
                         <li>Does it require approval?</li>
                         <li>What constraints apply?</li>
                     </ul>
-                    <p>The model shouldn't answer those questions. Your architecture should.</p>
+                    <p>The model shouldn't answer those questions. Your policies should.</p>
 
                     <p>Every input, tool call, policy decision, and output should be written to an append-only run
                         ledger so executions are replayable and auditable. Models may suggest actions, but the system
@@ -259,7 +264,7 @@
                         necessary. But the system around the LLM should be predictable where it matters for your use
                         case (e.g. state changes, side
                         effects, governance decisions). Once an LLM's output is captured as a
-                        versioned input, the orchestration, policy, and execution layers will behave the same way every
+                        versioned input the orchestration, policy, and execution layers will behave the same way every
                         time. Said differently, <em>the non-deterministic part of the system needs to end at the model
                             boundary.</em>
                         Once the LLM produces an output, that output should be treated as data. Not as ongoing behavior.
@@ -274,8 +279,7 @@
                     </figure>
 
                     <p>And yes, it's tempting to say “we'll just route all important decisions to a human.” That feels
-                        safe, but it
-                        introduces its own failure modes. More on that in a future post.</p>
+                        safe, but that approach introduces its own failure modes. More on that in a future post.</p>
 
                     <p>GenAI feels wrong in many enterprises because it's being sprayed across workflows without
                         changing the underlying architecture. We're inserting probabilistic components into environments
@@ -294,7 +298,8 @@
                     <p>Get this right and you're the Heart of Gold. Get it wrong and you're the bowl of petunias, with
                         just enough time for one last thought: “oh no, not again.”</p>
 
-                    <p>If you find yourself thinking about these problems too, let's nerd out. Drop me a line anytime at
+                    <p>If you find yourself also thinking about these problems, let's nerd out. Drop me a line anytime
+                        at
                         <a href="mailto:kyle@directiv.ai">kyle@directiv.ai</a>.
                     </p>
 
