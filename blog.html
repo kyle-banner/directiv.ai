@@ -202,6 +202,29 @@
             <div class="post-meta">January 22, 2026 - 8 min read</div>
             <div class="post-block">
                 <div class="post-body">
+                    <p>By now you've seen the <a
+                            href="https://mlq.ai/media/quarterly_decks/v0.1_State_of_AI_in_Business_2025_Report.pdf">MIT
+                            report from 2025</a> that claims
+                        only ~5% of enterprise AI pilots deliver measurable business impact. The other 95% quietly
+                        stall out or die on the vine.
+
+                        The report points many recurring reasons for those failures, here are a select few:
+
+                        <li>AI integrations don't provide value or error out when dropped in to enterprise workflows
+                        </li>
+
+                        <li>GenAI solutions don't retain context or adapt based on operational feedback</li>
+
+                        <li>Most deployments boost individual productivity but fail to meaningfully change how systems
+                            actually work</li>
+
+                        I've seen these truths in my daily work, both as a user and as an engineer. But I don't think
+                        these
+                        problems stem from GenAI itself. I think these problems stem from probabalistic models being
+                        dropped into deterministic workflows.
+                        To explain what I think is really going on, I need to tell you a quick story about the Infinite
+                        Improbability Drive.
+                    </p>
                     <p>In <em>The Hitchhiker's Guide to the Galaxy</em>, the Infinite Improbability Drive is the core of
                         the Heart of Gold, the crew's interstellar spaceship. When activated the Infinite Improbability
                         Drive routinely causes wildly
@@ -266,7 +289,7 @@
                         case (e.g. state changes, side
                         effects, governance decisions). Once an LLM's output is captured as a
                         versioned input the orchestration, policy, and execution layers will behave the same way every
-                        time. Said differently, <em>the non-deterministic part of the system needs to end at the model
+                        time. <em>The non-deterministic part of the system needs to end at the model
                             boundary.</em>
                         Once the LLM produces an output, that output should be treated as data. Not as ongoing behavior.
                     </p>
@@ -297,7 +320,17 @@
                         models can suggest actions, but the surrounding system must decide,
                         execute, and record.</p>
 
-                    <p>Get this right and you're the Heart of Gold. Get it wrong and you're the bowl of petunias, with
+                    <p>To bring us back to the original point: one of the reasons most enterprise GenAI efforts fail
+                        isn't because the models aren't good enough. It's because we're treating probabilistic engines
+                        like finished applications instead of powerful components that need to be contained, governed,
+                        and integrated into real systems. When you design your architecture so the model proposes and
+                        the system decides, executes, and records, GenAI stops feeling chaotic and starts delivering
+                        durable value. Get that boundary right, and the technology finally does what everyone hoped it
+                        would in the first place.
+                    </p>
+
+                    <p>Said differently: get this right and you're the Heart of Gold. Get it wrong and you're the bowl
+                        of petunias, with
                         just enough time for one last thought: "oh no, not again."</p>
 
                     <p>If you find yourself also thinking about these problems, let's nerd out. Drop me a line anytime
