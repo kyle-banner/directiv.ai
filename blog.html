@@ -121,6 +121,24 @@
             color: var(--muted);
         }
 
+        .video-embed {
+            position: relative;
+            padding-top: 56.25%;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid #262c3f;
+        }
+
+        .video-embed iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
         .cta-row {
             margin-top: 1.5rem;
             display: flex;
@@ -183,59 +201,85 @@
                         improbable and chaotic events, like turning missiles into a whale and a bowl of petunias. It's a
                         notoriously unreliable and dangerous technology that can change the physical state of the ship
                         and its crew. And yet, it's also the component that makes instantaneous, universe-bending jumps
-                        possible. The Heart of Gold surrounds the Infinite Improbability Drive and provides structure,
-                        controls, and safety for its crew (most
-                        of the time).
-                    </p>
+                        possible. The Heart of Gold itself surrounds the Infinite Improbability Drive and provides
+                        structure,
+                        controls, and safety for its crew (most of the time).</p>
+
+                    <div class="video-embed">
+                        <iframe src="https://www.youtube.com/embed/BFSst3ujx6U" title="YouTube video player"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+
                     <p>In your AI-enabled applications, an LLM plays the same role as the drive. It generates powerful,
-                        probabilistic
-                        answers at incredible speeds. However the LLM cannot own state, enforce rules, or safely handle
-                        failure on its own. That distinction matters. The rest of your application must play the
-                        role of the spaceship. When an LLM is contained inside a
-                        deterministic application, you create something that actually survives first contact with users
-                        in
-                        production.</p>
-                    <p>The Heart of Gold didn't need a better drive, and enterprises don't need a smarter model.
-                        Enterprises need deterministic systems that can safely contain probabilistic components.</p>
-                    <p>In 2026 most enterprise GenAI app failures are not model quality problems. These failures are a
-                        result of determinism and control-plane problems. Enterprises are trying to apply probabilistic
-                        systems to deterministic workflows without introducing the missing architectural components.</p>
-                    <p>For an effective system using LLMs for core functions, you need deterministic envelopes around
-                        probabilistic
-                        cores. LLMs should be pure functions inside a deterministic orchestration layer. Inputs, tool
-                        calls, outputs, and side effects must be versioned, replayable, and diffable.</p>
-                    <p>The LLM should never be allowed to directly mutate enterprise systems. The model should only
-                        propose actions inside a deterministic orchestration layer that enforces policy, versioning,
-                        idempotency, and evaluation gates.</p>
-                    <p>This is where policy engines like Open Policy Agent fit cleanly. OPA gives you a deterministic
-                        decision point: Is this action allowed? Does it require approval? What constraints apply? The
-                        model doesn't answer those questions. Your architecture does.</p>
-                    <p>Every input, tool call, and output should be written to an append-only run ledger so executions
-                        are replayable and auditable. Probabilistic systems may only propose commands; deterministic
-                        systems decide and record. Side effects happen only through deterministic tool executors with
-                        idempotency keys (so retries do not duplicate actions), and higher-risk actions are routed to a
-                        human approval queue.</p>
+                        probabilistic answers at incredible speed. What the LLM cannot do is own state, enforce rules,
+                        or
+                        safely recover from failure on its own. That responsibility belongs to the rest of the
+                        application. In this metaphor that's the spaceship. When an LLM is boxed inside a system with
+                        clear execution rules and
+                        control points, you get something that might just actually provide value in production.
+                    </p>
+
+                    <p>In 2026, most enterprise GenAI application failures are not model-quality problems. They're
+                        control-plane problems. Organizations are dropping probabilistic systems into workflows that
+                        were built to be predictable and auditable, without adding the architectural pieces those
+                        workflows depend on.</p>
+
+                    <p>If you want LLMs to play a core role in your systems, you need a clear separation of
+                        responsibilities. The model should behave like a pure function inside a workflow engine that
+                        owns execution, retries, and state transitions. Inputs, tool calls, outputs, and side effects
+                        need to be versioned, replayable, and diffable.</p>
+
+                    <p>An LLM should never be allowed to directly mutate enterprise systems. It should only propose
+                        actions. A governing orchestration layer decides what is allowed, enforces policy and
+                        idempotency, and applies evaluation gates before anything mutates real systems.</p>
+
+                    <p>This is where policy engines like <a href="https://www.openpolicyagent.org/">Open Policy
+                            Agent</a> fit cleanly. OPA gives you an explicit decision point: Is this action allowed?
+                        Does it require approval? What constraints apply? The model shouldn't answer those questions.
+                        Your
+                        architecture should.</p>
+
+                    <p>Every input, tool call, policy decision, and output should be written to an append-only run
+                        ledger so executions are replayable and auditable. Models may suggest actions, but the system
+                        decides what actually happens and records why. Side effects occur only through controlled
+                        executors with idempotency keys, so retries don't quietly duplicate work. Higher-risk actions
+                        can be routed through a human approval queue as a deliberate control, not a safety blanket.</p>
+
                     <figure>
                         <img src="assets/blog/llm-in-deterministic-system.png"
-                            alt="LLM inside a deterministic orchestration system with policy and logging" />
-                        <figcaption>Keep probabilistic cores inside deterministic envelopes.</figcaption>
+                            alt="LLM inside a controlled orchestration system with policy and logging" />
+                        <figcaption>Limit LLMs to narrow roles inside governed execution boundaries</figcaption>
                     </figure>
+
                     <p>And yes, it's tempting to say “we'll just route everything to a human.” That feels safe, but it
-                        creates its own failure modes. More on that in a future post.</p>
-                    <p>GenAI feels wrong in enterprises because it is being sprayed across workflows without changing
-                        the underlying system architecture. We are inserting probabilistic components into environments
-                        that were designed for determinism, auditability, and control. Then we are pretending nothing
-                        needs to change.</p>
-                    <p>This is not an AI maturity problem. It is a systems design failure. GenAI feels wrong in
-                        enterprises because we're treating it like the app itself when it should be treated more like
-                        infrastructure.</p>
+                        introduces its own failure modes. More on that in a future post.</p>
+
+                    <p>GenAI feels wrong in many enterprises because it's being sprayed across workflows without
+                        changing the underlying architecture. We're inserting probabilistic components into environments
+                        that were designed for predictability, auditability, and control—and then pretending nothing
+                        else needs to change.</p>
+
+                    <p>This isn't an AI maturity issue. It's a systems design failure. AI-enabled apps feel wrong
+                        because we're
+                        treating AI like the application itself, when it should be treated more like infrastructure. The
+                        system around the LLM is predictable where it matters:
+                        state changes, side effects, and governance decisions. Once an LLM's output is captured as a
+                        versioned input, the orchestration, policy, and execution layers will behave the same way every
+                        time. Models propose. Systems decide, execute, and record.</p>
+
                     <p>The companies getting this right aren't “using more AI.” They're redesigning the systems around
-                        AI. They know that probabilistic systems should only propose commands; deterministic systems
-                        decide and record.</p>
+                        it. They're narrowing the use of AI to precise, value-adding features. They understand that
+                        models can suggest actions, but the surrounding system must decide,
+                        execute, and record.</p>
+
                     <p>Get this right and you're the Heart of Gold. Get it wrong and you're the bowl of petunias, with
-                        just enough time for one last thought: “oh no, not again.”
-                    <p>If you find yourself also thinking about these problems, let's nerd out together. Drop me a line
-                        anytime at <a href="mailto:kyle@directiv.ai">kyle@directiv.ai</a>.</p>
+                        just enough time for one last thought: “oh no, not again.”</p>
+
+                    <p>If you find yourself thinking about these problems too, let's nerd out. Drop me a line anytime at
+                        <a href="mailto:kyle@directiv.ai">kyle@directiv.ai</a>.
+                    </p>
+
                 </div>
             </div>
         </article>
