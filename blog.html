@@ -179,22 +179,29 @@
             <div class="post-block">
                 <div class="post-body">
                     <p>In <em>The Hitchhiker's Guide to the Galaxy</em>, the Infinite Improbability Drive is the core of
-                        The Heart of Gold, the crew's interstellar spaceship. It's the key component that makes wildly
-                        unlikely jumps possible in an instant while the ship itself provides structure, controls, and
-                        safety.</p>
-                    <p>An LLM plays the same role as the drive: it generates powerful, probabilistic possibilities in an
-                        instance. But the LLM cannot own state, enforce rules, or safely handle failure on its own. When
-                        you mistake the drive for the ship, you get chaos. When you mistake the LLM for your app, you
-                        get chaos. However, if the drive is contained within a well-built space ship with navigation
-                        controls and a competent pilot, you get where you want to go in an instant. Similarly, if you
-                        can contain your LLM inside a deterministic application, you get something that actually
-                        survives first contact with the user in production.</p>
+                        the Heart of Gold, the crew's interstellar spaceship. When activated, it routinely causes wildly
+                        improbable and chaotic events, like turning missiles into a whale and a bowl of petunias. It's a
+                        notoriously unreliable and dangerous technology that can change the physical state of the ship
+                        and its crew. And yet, it's also the component that makes instantaneous, universe-bending jumps
+                        possible. The Heart of Gold surrounds the Infinite Improbability Drive and provides structure,
+                        controls, and safety for its crew (most
+                        of the time).
+                    </p>
+                    <p>In your AI-enabled applications, an LLM plays the same role as the drive. It generates powerful,
+                        probabilistic
+                        answers at incredible speeds. However the LLM cannot own state, enforce rules, or safely handle
+                        failure on its own. That distinction matters. The rest of your application must play the
+                        role of the spaceship. When an LLM is contained inside a
+                        deterministic application, you create something that actually survives first contact with users
+                        in
+                        production.</p>
                     <p>The Heart of Gold didn't need a better drive, and enterprises don't need a smarter model.
                         Enterprises need deterministic systems that can safely contain probabilistic components.</p>
                     <p>In 2026 most enterprise GenAI app failures are not model quality problems. These failures are a
                         result of determinism and control-plane problems. Enterprises are trying to apply probabilistic
                         systems to deterministic workflows without introducing the missing architectural components.</p>
-                    <p>For an effective system using GenAI, you need deterministic envelopes around probabilistic
+                    <p>For an effective system using LLMs for core functions, you need deterministic envelopes around
+                        probabilistic
                         cores. LLMs should be pure functions inside a deterministic orchestration layer. Inputs, tool
                         calls, outputs, and side effects must be versioned, replayable, and diffable.</p>
                     <p>The LLM should never be allowed to directly mutate enterprise systems. The model should only
@@ -227,8 +234,8 @@
                         decide and record.</p>
                     <p>Get this right and you're the Heart of Gold. Get it wrong and you're the bowl of petunias, with
                         just enough time for one last thought: “oh no, not again.”
-                    <p>Want more? Let's nerd out. Drop me a line anytime at <a
-                            href="mailto:kyle@directiv.ai">kyle@directiv.ai</a>.</p>
+                    <p>If you find yourself also thinking about these problems, let's nerd out together. Drop me a line
+                        anytime at <a href="mailto:kyle@directiv.ai">kyle@directiv.ai</a>.</p>
                 </div>
             </div>
         </article>
