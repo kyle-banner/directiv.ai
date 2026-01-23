@@ -48,24 +48,29 @@
             line-height: 1.6;
         }
 
+        .cta-row {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
         .cta {
             display: inline-block;
-            margin-top: 1.5rem;
             padding: 0.8rem 1.6rem;
             border-radius: 0.5rem;
             background: var(--accent);
             color: #fff;
             text-decoration: none;
             font-weight: 600;
+            width: 180px;
+            text-align: center;
             transition: background 0.2s ease;
         }
 
         .cta:hover {
             background: var(--accent-light);
-        }
-
-        .cta+.cta {
-            margin-left: 0.6rem;
         }
 
         footer {
@@ -93,8 +98,10 @@
         Engineering intelligent systems that act.<br />
         Perspectives on building safe, controllable, AI-enabled applications.
     </p>
-    <a class="cta" href="mailto:kyle@directiv.ai">Get in touch</a>
-    <a class="cta" href="blog.html">Read the blog</a>
+    <div class="cta-row">
+        <a class="cta" href="mailto:kyle@directiv.ai">Get in touch</a>
+        <a class="cta" href="blog.html">Read the blog</a>
+    </div>
     <footer>© <span id="year"></span> Directiv.ai</footer>
 
     <script>
