@@ -117,8 +117,13 @@
 
         figcaption {
             margin-top: 0.6rem;
+            margin-bottom: 0.6rem;
             font-size: 0.9rem;
             color: var(--muted);
+        }
+
+        figure a {
+            display: block;
         }
 
         .video-embed {
@@ -217,7 +222,7 @@
                         safely recover from failure on its own. That responsibility belongs to the rest of the
                         application. In this metaphor that's the spaceship. When an LLM is boxed inside a system with
                         clear execution rules and
-                        control points, you get something that might just actually provide value in production.
+                        control points, you end up with something that might just actually provide value in production.
                     </p>
 
                     <p>In 2026, most enterprise GenAI application failures are not model-quality problems. They're
@@ -235,10 +240,13 @@
                         idempotency, and applies evaluation gates before anything mutates real systems.</p>
 
                     <p>This is where policy engines like <a href="https://www.openpolicyagent.org/">Open Policy
-                            Agent</a> fit cleanly. OPA gives you an explicit decision point: Is this action allowed?
-                        Does it require approval? What constraints apply? The model shouldn't answer those questions.
-                        Your
-                        architecture should.</p>
+                            Agent</a> fit cleanly. OPA gives you an explicit decision point:</p>
+                    <ul>
+                        <li>Is this action allowed?</li>
+                        <li>Does it require approval?</li>
+                        <li>What constraints apply?</li>
+                    </ul>
+                    <p>The model shouldn't answer those questions. Your architecture should.</p>
 
                     <p>Every input, tool call, policy decision, and output should be written to an append-only run
                         ledger so executions are replayable and auditable. Models may suggest actions, but the system
@@ -246,10 +254,19 @@
                         executors with idempotency keys, so retries don't quietly duplicate work. Higher-risk actions
                         can be routed through a human approval queue as a deliberate control, not a safety blanket.</p>
 
+                    <p> All of this might sound like overkill, and in some AI-enabled applications this might bot be
+                        necessary. But the system around the LLM should be predictable where it matters for your use
+                        case e.g. state changes, side
+                        effects, and governance decisions. Once an LLM's output is captured as a
+                        versioned input, the orchestration, policy, and execution layers will behave the same way every
+                        time.</p>
+
                     <figure>
-                        <img src="assets/blog/llm-in-deterministic-system.png"
-                            alt="LLM inside a controlled orchestration system with policy and logging" />
-                        <figcaption>Limit LLMs to narrow roles inside governed execution boundaries</figcaption>
+                        <a href="assets/blog/llm-in-deterministic-system.png" target="_blank" rel="noopener">
+                            <img src="assets/blog/llm-in-deterministic-system.png"
+                                alt="LLM inside a controlled orchestration system with policy and logging" />
+                        </a>
+                        <figcaption>Models propose. Systems decide, execute, and record.</figcaption>
                     </figure>
 
                     <p>And yes, it's tempting to say “we'll just route everything to a human.” That feels safe, but it
@@ -262,11 +279,7 @@
 
                     <p>This isn't an AI maturity issue. It's a systems design failure. AI-enabled apps feel wrong
                         because we're
-                        treating AI like the application itself, when it should be treated more like infrastructure. The
-                        system around the LLM is predictable where it matters:
-                        state changes, side effects, and governance decisions. Once an LLM's output is captured as a
-                        versioned input, the orchestration, policy, and execution layers will behave the same way every
-                        time. Models propose. Systems decide, execute, and record.</p>
+                        treating AI like the application itself, when it should be treated more like infrastructure.</p>
 
                     <p>The companies getting this right aren't “using more AI.” They're redesigning the systems around
                         it. They're narrowing the use of AI to precise, value-adding features. They understand that
