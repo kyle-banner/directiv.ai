@@ -120,6 +120,7 @@
             margin-bottom: 0.6rem;
             font-size: 0.9rem;
             color: var(--muted);
+            text-align: center;
         }
 
         figure a {
@@ -254,12 +255,15 @@
                         executors with idempotency keys, so retries don't quietly duplicate work. Higher-risk actions
                         can be routed through a human approval queue as a deliberate control, not a safety blanket.</p>
 
-                    <p> All of this might sound like overkill, and in some AI-enabled applications this might bot be
+                    <p> All of this might sound like overkill, and in some AI-enabled applications this might not be
                         necessary. But the system around the LLM should be predictable where it matters for your use
-                        case e.g. state changes, side
-                        effects, and governance decisions. Once an LLM's output is captured as a
+                        case (e.g. state changes, side
+                        effects, governance decisions). Once an LLM's output is captured as a
                         versioned input, the orchestration, policy, and execution layers will behave the same way every
-                        time.</p>
+                        time. Said differently, <em>the non-deterministic part of the system needs to end at the model
+                            boundary.</em>
+                        Once the LLM produces an output, that output should be treated as data. Not as ongoing behavior.
+                    </p>
 
                     <figure>
                         <a href="assets/blog/llm-in-deterministic-system.png" target="_blank" rel="noopener">
@@ -269,7 +273,8 @@
                         <figcaption>Models propose. Systems decide, execute, and record.</figcaption>
                     </figure>
 
-                    <p>And yes, it's tempting to say “we'll just route everything to a human.” That feels safe, but it
+                    <p>And yes, it's tempting to say “we'll just route all important decisions to a human.” That feels
+                        safe, but it
                         introduces its own failure modes. More on that in a future post.</p>
 
                     <p>GenAI feels wrong in many enterprises because it's being sprayed across workflows without
