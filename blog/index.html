@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Directiv.ai | Blog</title>
+    <style>
+        :root {
+            --bg: #0f1116;
+            --panel: #141824;
+            --text: #e4e6eb;
+            --muted: #b9bcc3;
+            --accent: #2b8eff;
+            --accent-light: #5aa7ff;
+            --font: "Inter", system-ui, -apple-system, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: var(--font);
+            background: radial-gradient(circle at top, #151a2a, var(--bg) 45%);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        a {
+            color: var(--accent-light);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .nav a {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .title {
+            margin: 0 0 0.5rem;
+            font-size: 2.4rem;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            margin: 0 0 2rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .post {
+            background: var(--panel);
+            border: 1px solid #1f2434;
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .post-title {
+            margin: 0 0 0.35rem;
+            font-size: 1.8rem;
+        }
+
+        .post-title a {
+            color: var(--text);
+        }
+
+        .post-meta {
+            font-size: 0.95rem;
+            color: var(--muted);
+            margin-bottom: 1rem;
+        }
+
+        .post-subtitle {
+            font-size: 1.05rem;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+
+        .post-excerpt {
+            margin: 0 0 1.5rem;
+            line-height: 1.7;
+            color: var(--text);
+        }
+
+        .cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.7rem 1.2rem;
+            border-radius: 999px;
+            background: var(--accent);
+            color: #fff;
+            font-weight: 600;
+            transition: background 0.2s ease;
+        }
+
+        .cta:hover {
+            background: var(--accent-light);
+            text-decoration: none;
+        }
+
+        @media (max-width: 800px) {
+            body {
+                padding: 1.5rem;
+            }
+
+            .post {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="/">&lt;- Back to Directiv.ai</a>
+            <a href="mailto:kyle@directiv.ai">Contact</a>
+        </div>
+
+        <h1 class="title">Directiv.ai Blog</h1>
+        <p class="subtitle">
+            Perspectives on building safe, controllable, AI-enabled applications
+        </p>
+
+        <article class="post">
+            <h2 class="post-title"><a href="models-propose-systems-decide/">GenAI Isn't the Problem. Your Architecture
+                    Is.</a></h2>
+            <div class="post-meta">January 22, 2026 - 10 min read</div>
+            <p class="post-excerpt">
+                By now you've seen the MIT report from 2025 that claims only ~5% of enterprise AI pilots deliver
+                measurable business impact. The other 95% quietly stall out or die on the vine. In this post I discuss
+                what those failure patterns reveal, and how effective systems design can improve the odds of success.
+            </p>
+            <a class="cta" href="models-propose-systems-decide/">Read the post</a>
+        </article>
+    </div>
+</body>
+
+</html>

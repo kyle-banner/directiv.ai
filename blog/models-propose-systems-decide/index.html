@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Directiv.ai | Blog</title>
+    <title>GenAI Isn't the Problem. Your Architecture Is. | Directiv.ai Blog</title>
     <style>
         :root {
             --bg: #0f1116;
@@ -85,6 +85,36 @@
             font-size: 0.95rem;
             color: var(--muted);
             margin-bottom: 1.5rem;
+        }
+
+        .post-subtitle {
+            font-size: 1.05rem;
+            color: var(--text);
+            margin-bottom: 0.6rem;
+        }
+
+        .post-tldr {
+            margin: 1.25rem 0 1.5rem;
+            padding: 1rem 1.2rem;
+            border-radius: 0.85rem;
+            border: 1px solid rgba(43, 142, 255, 0.35);
+            background: linear-gradient(135deg, rgba(43, 142, 255, 0.18), rgba(20, 24, 36, 0.9));
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .post-tldr-label {
+            font-size: 0.8rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent-light);
+            font-weight: 700;
+            margin: 0 0 0.4rem;
+        }
+
+        .post-tldr p {
+            margin: 0;
+            line-height: 1.6;
+            color: var(--text);
         }
 
         .post-block {
@@ -198,7 +228,7 @@
 <body>
     <div class="container">
         <div class="nav">
-            <a href="index.html">&lt;- Back to Directiv.ai</a>
+            <a href="/blog/">&lt;- Back to Blog</a>
             <a href="mailto:kyle@directiv.ai">Contact</a>
         </div>
 
@@ -207,11 +237,13 @@
             Perspectives on building safe, controllable, AI-enabled applications
         </p>
 
-        <!-- Duplicate this article block for each new post -->
         <article class="post">
-            <h2 class="post-title">Models Propose, Systems Decide</h2>
-            <div class="post-meta">GenAI isn't the problem. Your architecture is.</div>
-            <div class="post-meta">January 22, 2026 - 12 min read</div>
+            <h2 class="post-title">GenAI Isn't the Problem. Your Architecture Is.</h2>
+            <div class="post-meta">January 22, 2026 - 10 min read</div>
+            <div class="post-tldr">
+                <div class="post-tldr-label">TL;DR</div>
+                <p>Models propose, systems decide</p>
+            </div>
             <div class="post-block">
                 <div class="post-body">
                     <p>By now you've seen the <a
@@ -310,8 +342,8 @@
                     </p>
 
                     <figure>
-                        <a href="assets/blog/llm-in-controlled-system.png" target="_blank" rel="noopener">
-                            <img src="assets/blog/llm-in-controlled-system.png"
+                        <a href="../assets/llm-in-controlled-system.png" target="_blank" rel="noopener">
+                            <img src="../assets/llm-in-controlled-system.png"
                                 alt="LLM inside a controlled orchestration system with policy and logging" />
                         </a>
                         <figcaption>Models propose. Systems decide, execute, and record.</figcaption>
