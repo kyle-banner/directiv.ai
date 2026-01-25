@@ -146,6 +146,24 @@
             color: var(--text);
         }
 
+        .pull-quote {
+            margin: 1.5rem 0;
+            padding: 1.1rem 1.4rem;
+            border-radius: 0.9rem;
+            border: 1px solid rgba(43, 142, 255, 0.35);
+            background: linear-gradient(135deg, rgba(43, 142, 255, 0.14), rgba(20, 24, 36, 0.95));
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25);
+            font-style: italic;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--text);
+        }
+
+        .pull-quote span {
+            color: var(--accent-light);
+            font-weight: 600;
+        }
+
         figure {
             margin: 0;
         }
@@ -253,7 +271,7 @@
                         only ~5% of enterprise AI pilots deliver measurable business impact. The other 95% quietly
                         stall out or die on the vine.
 
-                        The report points many recurring reasons for those failures, here are a select few:</p>
+                        The report points to many recurring reasons for those failures, here are a select few:</p>
 
                     <ul>
                         <li>AI tool integrations fail to fit cleanly into enterprise workflows in a way that delivers
@@ -269,8 +287,14 @@
                     <p>I've seen these truths in my daily work, both as a user and as an engineer. But I don't think
                         these
                         problems stem from GenAI itself. I think these problems stem from probabalistic models being
-                        dropped into deterministic workflows.
-                        To explain what I think is really going on, I need to tell you a quick story about the Infinite
+                        dropped into deterministic workflows. The report states the following in it's final section:</p>
+                    <blockquote class="pull-quote">
+                        The most forward-thinking organizations are already experimenting with agentic systems that can
+                        learn, remember, and act autonomously <span>within defined parameters</span>.
+                    </blockquote>
+                    <p>I think <em>within defined parameters</em> is doing a herculean amount of lifting in that
+                        sentence. To explain what I mean, I need to tell you about the
+                        Infinite
                         Improbability Drive.
                     </p>
                     <p>In <em>The Hitchhiker's Guide to the Galaxy</em>, the Infinite Improbability Drive is the core of
@@ -308,8 +332,8 @@
                         were built to be predictable and auditable without adding the architectural pieces to protect
                         the rest of the system from the new chaos.</p>
 
-                    <p>If you want LLMs to play a core role in your systems, you need a clear separation of
-                        responsibilities. The model should behave like a pure function inside a workflow engine that
+                    <p>If you want LLMs to play a core role in your systems, you must clearly separate
+                        responsibilities. The model should behave like any other API call inside a workflow engine that
                         owns execution, retries, and state transitions. Inputs, tool calls, outputs, and side effects
                         need to be versioned, replayable, and diffable.</p>
 
@@ -328,9 +352,11 @@
 
                     <p>Every input, tool call, policy decision, and output should be written to an append-only run
                         ledger so executions are replayable and auditable. Models may suggest actions, but the system
-                        decides what actually happens and records why. Side effects occur only through controlled
+                        decides what actually happens and records why. A second, simpler overwatch model with a bundled
+                        retry system may be necessary. Side effects occur only through controlled
                         executors with idempotency keys, so retries don't quietly duplicate work. Higher-risk actions
-                        can be routed through a human approval queue as a deliberate control, not a safety blanket.</p>
+                        can be routed through a human approval queue as a deliberate control, but not as a safety
+                        blanket.</p>
 
                     <p> All of this might sound like overkill, and in some AI-enabled applications this might not be
                         necessary. But the system around the LLM should be predictable where it matters for your use
@@ -356,10 +382,9 @@
                     <p>GenAI feels wrong in many enterprises because it's being sprayed across workflows without
                         changing the underlying architecture. We're inserting probabilistic components into environments
                         that were designed for predictability, auditability, and control. Then we're pretending like
-                        nothing
-                        else needs to change.</p>
+                        nothing else needs to change.</p>
 
-                    <p>This isn't an AI maturity issue. It's a systems design failure. AI-enabled apps feel wrong
+                    <p>This isn't an AI maturity issue. It's a systems design failure. GenAI-enabled apps feel wrong
                         because we're
                         treating AI like the application itself, when it should be treated more like infrastructure.</p>
 
@@ -368,11 +393,12 @@
                         models can suggest actions, but the surrounding system must decide,
                         execute, and record.</p>
 
-                    <p>To bring us back to the original point: one of the reasons most enterprise GenAI efforts fail
+                    <p>To bring us back to the original point: one of the reasons enterprise GenAI efforts fail
                         isn't because the models aren't good enough. It's because we're treating probabilistic engines
                         like finished applications instead of powerful components that need to be contained, governed,
                         and integrated into real systems. When you design your architecture so the model proposes and
-                        the system decides, executes, and records, GenAI stops feeling chaotic and starts delivering
+                        the system decides, executes, and records, GenAI components stop feeling chaotic and start
+                        delivering
                         durable value. Get that boundary right, and the technology finally does what everyone hoped it
                         would in the first place.
                     </p>
