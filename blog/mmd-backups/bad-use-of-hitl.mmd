@@ -1,0 +1,17 @@
+flowchart TD
+  A[Request or Event]
+  B["Orchestrator <br/> (API)"]
+  C["LLM Proposes Plan <br/> (GPT, Claude)"]
+  G["Human Approval Queue <br/> (Slack, ServiceNow)"]
+  H["Idempotent Executor <br/> (Lambdas, Workers)"]
+  L["External Systems of Record <br/> (Salesforce, SAP)"]
+  K["Exception Handling <br/> (Incident Ticket)"]
+
+  A --> B
+  B --> C
+
+  C -->|Everything Requires Approval| G
+  G -->|Rubber Stamp Approval| H
+  G -->|Rarely rejects| K
+
+  H -->|Attempt Write| L

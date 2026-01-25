@@ -1,0 +1,31 @@
+flowchart TD
+  A[Request or Event]
+  B["Orchestrator Workflow State <br/> (Temporal, Step Functions)"]
+  C["LLM Proposes Plan <br/> (GPT, Claude)"]
+  D["Policy Decision <br/> (Open Policy Agent/Rego)"]
+  F["Risk Scoring Rules <br/> (Custom Heuristics in code)"]
+  G["Human Approval Queue <br/> (ServiceNow, Jira)"]
+  H["Idempotent Executor <br/> (Lambdas, Workers)"]
+  L["External Systems of Record <br/> (Salesforce, SAP, AD)"]
+  I["Append Only Run Ledger <br/> (Event Store, S3)"]
+  J["Observability <br/> (OpenTelemetry, Datadog)"]
+  K["Exception Handling <br/> (Incident Ticket)"]
+
+  A --> B
+  B --> C
+  C --> D
+  D -->|Allowed| F
+  D -->|Denied| K
+  F -->|Policy OK and Low Risk| H
+  F -->|Policy OK and High Risk| G
+  G -->|Approved| H
+  G -->|Rejected| K
+
+  H -->|Attempt Write| L
+  L -->|Response Success or Failure| H
+
+  H -->|On Success Record Outcome| I
+  H -->|On Failure Escalate| K
+
+  I --> J
+  K --> I
