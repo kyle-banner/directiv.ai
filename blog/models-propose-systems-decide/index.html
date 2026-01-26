@@ -344,30 +344,34 @@
                         the rest of the system from the new chaos.</p>
 
                     <p>If you want LLMs to play a core role in your systems, you must clearly separate
-                        responsibilities. The model should behave like any other API call inside a workflow engine that
+                        responsibilities. The model should be "just another API" inside a worflow, and the workflow
+                        itself
                         owns execution, retries, and state transitions. Inputs, tool calls, outputs, and side effects
                         need to be versioned, replayable, and diffable.</p>
 
-                    <p>An LLM should never be allowed to directly mutate enterprise systems. It should only propose
+                    <p>An LLM's output should never mutate enterprise systems of record through indirect action (i.e.
+                        LLM output
+                        being forwarded to a system of record without policies) and certainly should not be allowed to
+                        modify systems of record directly. It should only propose
                         actions. A governing orchestration layer decides what is allowed, enforces policy and
                         idempotency, and applies evaluation gates before anything mutates real systems.</p>
 
                     <p>This is where policy engines like <a href="https://www.openpolicyagent.org/">Open Policy
-                            Agent</a> fit cleanly. OPA gives you an explicit decision point:</p>
+                            Agent</a> (OPA) are helpful. A well architected system with OPA can answer the following
+                        questions using "old school" (no AI) techniques:</p>
                     <ul>
                         <li>Is this action allowed?</li>
                         <li>Does it require approval?</li>
                         <li>What constraints apply?</li>
                     </ul>
-                    <p>The model shouldn't answer those questions. Your policies should.</p>
+                    <p>Your policies should dictate the answers to those questions, not some clanker.</p>
 
                     <p>Every input, tool call, policy decision, and output should be written to an append-only run
-                        ledger so executions are replayable and auditable. Models may suggest actions, but the system
-                        decides what actually happens and records why. A second, simpler overwatch model with a bundled
-                        retry system may be necessary. Side effects occur only through controlled
-                        executors with idempotency keys, so retries don't quietly duplicate work. Higher-risk actions
-                        can be routed through a human approval queue as a deliberate control, but not as a safety
-                        blanket.</p>
+                        ledger so executions are replayable and auditable. Models may suggest actions, and an
+                        event-sourced/auditable execution system records not only what happened, but also records why
+                        the actions happened. Side effects occur only through controlled
+                        executors with idempotency keys so retries don't duplicate work. Higher-risk actions
+                        can be routed through a human approval queue as a deliberate control.</p>
 
                     <p> All of this might sound like overkill, and in some AI-enabled applications this might not be
                         necessary. But the system around the LLM should be predictable where it matters for your use
