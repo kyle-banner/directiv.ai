@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SXC8XPH34V"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-SXC8XPH34V');
+    </script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Humane HITL | directiv.ai blog</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <style>
+        :root {
+            --bg: #0f1116;
+            --panel: #141824;
+            --text: #e4e6eb;
+            --muted: #b9bcc3;
+            --accent: #2b8eff;
+            --accent-light: #5aa7ff;
+            --font: "Inter", system-ui, -apple-system, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: var(--font);
+            background: radial-gradient(circle at top, #151a2a, var(--bg) 45%);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        a {
+            color: var(--accent-light);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .nav a {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .title {
+            margin: 0 0 0.5rem;
+            font-size: 2.4rem;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            margin: 0 0 2rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .post {
+            background: var(--panel);
+            border: 1px solid #1f2434;
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .post-title {
+            margin: 0 0 0.2rem;
+            font-size: 1.8rem;
+        }
+
+        .post-meta {
+            font-size: 0.95rem;
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .post-subtitle {
+            font-size: 1.05rem;
+            color: var(--text);
+            margin-bottom: 0.6rem;
+        }
+
+        .post-tldr {
+            margin: 1.25rem 0 1.5rem;
+            padding: 1rem 1.2rem;
+            border-radius: 0.85rem;
+            border: 1px solid rgba(43, 142, 255, 0.35);
+            background: linear-gradient(135deg, rgba(43, 142, 255, 0.18), rgba(20, 24, 36, 0.9));
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .post-tldr-label {
+            font-size: 0.8rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent-light);
+            font-weight: 700;
+            margin: 0 0 0.4rem;
+        }
+
+        .post-tldr p {
+            margin: 0;
+            line-height: 1.6;
+            color: var(--text);
+        }
+
+        .post-block {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .post-body p {
+            margin: 0 0 1rem;
+            line-height: 1.7;
+            color: var(--text);
+        }
+
+        .post-body strong {
+            color: #fff;
+        }
+
+        .post-body ul {
+            margin: 1rem 0 1.2rem;
+            padding-left: 1.6rem;
+        }
+
+        .post-body li {
+            margin: 0.4rem 0;
+            line-height: 1.7;
+            color: var(--text);
+        }
+
+        .pull-quote {
+            margin: 1.5rem 0;
+            padding: 1.1rem 1.4rem;
+            border-radius: 0.9rem;
+            border: 1px solid rgba(43, 142, 255, 0.35);
+            background: linear-gradient(135deg, rgba(43, 142, 255, 0.14), rgba(20, 24, 36, 0.95));
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25);
+            font-style: italic;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--text);
+        }
+
+        .pull-quote span {
+            color: var(--accent-light);
+            font-weight: 600;
+        }
+
+        .video-embed {
+            position: relative;
+            padding-top: 56.25%;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid #262c3f;
+        }
+
+        .video-embed iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        figure {
+            margin: 0;
+        }
+
+        figcaption {
+            margin-top: 0.6rem;
+            margin-bottom: 0.6rem;
+            font-size: 0.9rem;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        @media (max-width: 800px) {
+            body {
+                padding: 1.5rem;
+            }
+
+            .post {
+                padding: 1.5rem;
+            }
+
+            .post-block {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="/blog/">&lt;- Back to blog</a>
+            <a href="mailto:kyle@directiv.ai">Contact</a>
+        </div>
+
+        <h1 class="title">directiv.ai blog</h1>
+        <p class="subtitle">
+            Perspectives on building safe, controllable, AI-enabled applications
+        </p>
+
+        <article class="post">
+            <h2 class="post-title">Humane HITL</h2>
+            <div class="post-meta">February 1, 2026 - 10 min read</div>
+            <div class="post-tldr">
+                <div class="post-tldr-label">TL;DR</div>
+                <p>Humans should be an intentional control point, not the control plane.</p>
+            </div>
+            <div class="post-block">
+                <div class="post-body">
+                    <p>“Just put a human in the loop.”</p>
+
+                    <p>When you're building an app or enterprise system that centers on an LLM this phrase is usually
+                        thrown out as a mic drop. Leadership breathes a sigh of relief when it's suggested because it
+                        means “a real human with an analog brain is going to make the important decisions.” It usually
+                        shows up at the end of a risk conversation, right when things start getting uncomfortable.
+                        Liability? Human in the loop. Safety? Human in the loop. Hallucinations?</p>
+
+                    <p>While Human In The Loop (HITL) designs are necessary, they're increasingly being used as an easy
+                        escape hatch. Except, when that escape hatch is opened, a digital system's failures are dumped
+                        onto a human. Instead of building responsible controls and policy on the digital side, we
+                        insert an analog human late in the workflow and treat that as governance.</p>
+
+                    <p>You may have found yourself in a similar situation, or maybe even found yourself at the wrong end
+                        of a bad decision because of HITL. You might feel like Jim Carrey's character, Dick, from
+                        <em>Fun
+                            With Dick and Jane</em>.
+                    </p>
+
+                    <div class="video-embed">
+                        <iframe src="https://www.youtube.com/embed/YvF1-NJ8DqY" title="YouTube video player"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+
+                    <p>Dick suffered from something akin to “Responsibility Without Authority” in the HITL failure
+                        modes I'll describe. Of the many ways HITL can fail, here are some common HITL failure modes:
+                    </p>
+
+                    <ul>
+                        <li><strong>Responsibility Without Authority</strong> When humans lack the authority,
+                            knowledge, and training to confidently make the decisions the system is asking them to make
+                        </li>
+                        <li><strong>Alarm Fatigue</strong> When humans are flustered by rapid frequency decisions that
+                            overwhelm their ability to disposition</li>
+                        <li><strong>Rubber-Stamp Automation</strong> When humans are just a rubber stamp in turbo mode
+                        </li>
+                    </ul>
+
+                    <p>As AI systems are more widely adopted and operate at higher volume, misusing HITL degrades
+                        outcomes and unfairly transfers systemic risks to people.</p>
+
+                    <p><strong>Responsibility Without Authority</strong></p>
+                    <p>In this failure mode humans are put in the rough position to approve suggestions made upstream by
+                        systems they did not design or control. Furthermore, the human is not properly trained to
+                        understand the decisions that were made to produce the suggestion they're approving. For
+                        example, the human has likely never read the system prompt, they just have some vague idea of
+                        what the system is somehow proposing and why.</p>
+
+                    <p>In this failure mode, accountability lands on the human not because they had any real control,
+                        but simply because they were the ultimate decision in a long chain of esoteric logic.</p>
+
+                    <p><strong>Alarm Fatigue</strong></p>
+                    <p>I first learned about alarm fatigue when I was working in the oil fields of West Texas ~12 years
+                        ago. I was not shocked that alarm fatigue existed; the concept makes sense if you spend any
+                        amount of time in a chaotic control room. I was shocked by how quickly it set in. Rubber stamp
+                        procedures were created to “shut that thing up.” The symptoms were addressed instead of the
+                        disease.</p>
+
+                    <p>Similarly, in HITL situations, asking a human to do high-frequency decision making overwhelms
+                        their attention. High volume, partial context, and time pressure create a system where
+                        oversight becomes muscle memory. Alarm fatigue erodes the exact safeguard HITL is supposed to
+                        deliver.</p>
+
+                    <p><strong>Rubber-Stamp Automation</strong></p>
+                    <p>This failure mode usually happens long before AI is introduced to the system. This failure mode
+                        happens when the process was already ceremonial. In this scenario the system around HITL makes
+                        the human a faster rubber stamp. Good metric go up, boss happy. But what have you accomplished,
+                        really?</p>
+
+                    <figure>
+                        <a href="../assets/bad-use-of-hitl.png" target="_blank" rel="noopener">
+                            <img src="../assets/bad-use-of-hitl.png"
+                                alt="Bad use of human-in-the-loop as a late-stage escape hatch" />
+                        </a>
+                        <figcaption>Bad HITL: a human added late to absorb system failure.</figcaption>
+                    </figure>
+
+                    <p>Now that we've explored the failure modes, when does HITL make sense?</p>
+
+                    <p>HITL is powerful when deliberately designed into the system. Here are some success modes where
+                        humans belong in the loop:</p>
+
+                    <ul>
+                        <li><strong>High-impact, low-frequency decisions</strong> — These are rare events with real
+                            consequences. For example account termination/lockouts, irreversible financial
+                            transactions, fraud detection, etc. This is the inverse of alarm fatigue.</li>
+                        <li><strong>Policy exceptions and ambiguity</strong> — Escalation to a human is appropriate when
+                            a suggested action falls outside the bounds. “Falling outside the bounds” is caught by
+                            proper policy definition and risk scoring in your application, not by the human. This puts
+                            the human in the exception path, not in the default logic.</li>
+                        <li><strong>Situational Override</strong> — Human users of the system know when the system's
+                            technically correct and fully compliant behavior must be stopped, given what is happening
+                            outside of the system. The system cannot know when the context has shifted, because that
+                            context lives in unfolding events or in the minds of the people running the system that has
+                            not made it into the model as captured data. Think active incident responses, audits/legal
+                            holds, a high visibility launch, etc.</li>
+                    </ul>
+
+                    <figure>
+                        <a href="../assets/good-use-of-hitl.png" target="_blank" rel="noopener">
+                            <img src="../assets/good-use-of-hitl.png"
+                                alt="Good use of human-in-the-loop as a deliberate control point" />
+                        </a>
+                        <figcaption>Good HITL: a deliberate control point for high-impact decisions.</figcaption>
+                    </figure>
+
+                    <p><strong>In closing, humans are terrible at:</strong></p>
+                    <ul>
+                        <li>Making decisions without context</li>
+                        <li>Being real-time filters for high-volume systems</li>
+                    </ul>
+
+                    <p>However: humans are fantastic at “lgtm”-ing low-impact decisions. But we shouldn't be designing
+                        our
+                        systems to arbitrarily need a human as a rubber stamp. If your AI-driven app requires constant
+                        human interaction to remain safe, the system will never be safe. Human vigilance is bounded.
+                        Attention decays, context is lost, fatigue builds, leading to a human always failing when faced
+                        with the entropy of a digital system.</p>
+
+                    <p>HITL should be as deliberate as possible. HITL should never be used as a crutch for systems that
+                        can otherwise define their own policy and heuristics through the old ways:</p>
+
+                    <ul>
+                        <li>Policy engines</li>
+                        <li>Orchestration layers</li>
+                        <li>Versioned state</li>
+                        <li>Controlled executors</li>
+                    </ul>
+
+                    <p>Don't make your coworkers the fall guy. Models propose, systems decide. Humans intervene on
+                        purpose.</p>
+
+                    <p>If you find yourself also thinking about these problems, let's nerd out. Drop me a line anytime
+                        at
+                        <a href="mailto:kyle@directiv.ai">kyle@directiv.ai</a>.
+                    </p>
+                </div>
+            </div>
+        </article>
+    </div>
+</body>
+
+</html>
