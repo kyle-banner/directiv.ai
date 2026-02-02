@@ -306,7 +306,8 @@
                     </ul>
 
                     <p>As AI systems are more widely adopted and operate at higher volume, misusing HITL degrades
-                        outcomes and unfairly transfers systemic risks to people.</p>
+                        outcomes and unfairly transfers systemic risks to people. Let's explore these failure modes a
+                        little deeper:</p>
 
                     <p><strong>Responsibility Without Authority</strong></p>
                     <p>In this failure mode humans are put in the rough position to approve suggestions made upstream by
@@ -316,18 +317,24 @@
                         what the system is somehow proposing and why.</p>
 
                     <p>In this failure mode, accountability lands on the human not because they had any real control,
-                        but simply because they were the ultimate decision in a long chain of esoteric logic.</p>
+                        but simply because they were designed in to the architecture as the ultimate bottleneck in a
+                        long chain of esoteric
+                        logic.</p>
 
                     <p><strong>Alarm Fatigue</strong></p>
-                    <p>I first learned about alarm fatigue when I was working in the oil fields of West Texas ~12 years
+                    <p>I first learned about alarm fatigue when I was working in the oil fields ~12 years
                         ago. I was not shocked that alarm fatigue existed; the concept makes sense if you spend any
-                        amount of time in a chaotic control room. I was shocked by how quickly it set in. Rubber stamp
-                        procedures were created to “shut that thing up.” The symptoms were addressed instead of the
-                        disease.</p>
+                        amount of time in a chaotic control room. I was shocked by how quickly it set in. The company
+                        men in the room had a hard time distinguishing the alarms that mattered (H2S) from the alarms
+                        that didn't (relatively speaking, literally anything else). They just wanted to "shut that thing
+                        up," so many times alarms were silenced without a second thought. The symptoms were addressed
+                        instead of the disease.</p>
 
                     <p>Similarly, in HITL situations, asking a human to do high-frequency decision making overwhelms
                         their attention. High volume, partial context, and time pressure create a system where
-                        oversight becomes muscle memory. Alarm fatigue erodes the exact safeguard HITL is supposed to
+                        oversight becomes muscle memory. When an actual erroneous, strange, or downright harmful
+                        request is made from the LLM, it's treated like all of the other requests without a second
+                        thought. Alarm fatigue erodes the exact safeguard HITL is supposed to
                         deliver.</p>
 
                     <p><strong>Rubber-Stamp Automation</strong></p>
