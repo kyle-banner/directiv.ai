@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SXC8XPH34V"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-SXC8XPH34V');
+    </script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>There's a Second OWASP Top Ten. We Were Already Building It. | directiv.ai blog</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <style>
+        :root {
+            --bg: #0f1116;
+            --panel: #141824;
+            --text: #e4e6eb;
+            --muted: #b9bcc3;
+            --accent: #2b8eff;
+            --accent-light: #5aa7ff;
+            --font: "Inter", system-ui, -apple-system, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: var(--font);
+            background: radial-gradient(circle at top, #151a2a, var(--bg) 45%);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        a {
+            color: var(--accent-light);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .nav a {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .title {
+            margin: 0 0 0.5rem;
+            font-size: 2.4rem;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            margin: 0 0 2rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .post {
+            background: var(--panel);
+            border: 1px solid #1f2434;
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .post-title {
+            margin: 0 0 0.2rem;
+            font-size: 1.8rem;
+        }
+
+        .post-meta {
+            font-size: 0.95rem;
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .post-subtitle {
+            font-size: 1.05rem;
+            color: var(--text);
+            margin-bottom: 0.6rem;
+        }
+
+        .post-tldr {
+            margin: 1.25rem 0 1.5rem;
+            padding: 1rem 1.2rem;
+            border-radius: 0.85rem;
+            border: 1px solid rgba(43, 142, 255, 0.35);
+            background: linear-gradient(135deg, rgba(43, 142, 255, 0.18), rgba(20, 24, 36, 0.9));
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .post-tldr-label {
+            font-size: 0.8rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent-light);
+            font-weight: 700;
+            margin: 0 0 0.4rem;
+        }
+
+        .post-tldr p {
+            margin: 0;
+            line-height: 1.6;
+            color: var(--text);
+        }
+
+        .post-block {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .post-body p {
+            margin: 0 0 1rem;
+            line-height: 1.7;
+            color: var(--text);
+        }
+
+        .post-body strong {
+            color: #fff;
+        }
+
+        .post-body ul {
+            margin: 1rem 0 1.2rem;
+            padding-left: 1.6rem;
+        }
+
+        .post-body li {
+            margin: 0.4rem 0;
+            line-height: 1.7;
+            color: var(--text);
+        }
+
+        .pull-quote {
+            margin: 1.5rem 0;
+            padding: 1.1rem 1.4rem;
+            border-radius: 0.9rem;
+            border: 1px solid rgba(43, 142, 255, 0.35);
+            background: linear-gradient(135deg, rgba(43, 142, 255, 0.14), rgba(20, 24, 36, 0.95));
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25);
+            font-style: italic;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--text);
+        }
+
+        .pull-quote span {
+            color: var(--accent-light);
+            font-weight: 600;
+        }
+
+        figure {
+            margin: 0;
+        }
+
+        img {
+            width: 100%;
+            border-radius: 0.75rem;
+            display: block;
+            border: 1px solid #262c3f;
+        }
+
+        figcaption {
+            margin-top: 0.6rem;
+            margin-bottom: 0.6rem;
+            font-size: 0.9rem;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        figure a {
+            display: block;
+        }
+
+        .cta-row {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.7rem 1.2rem;
+            border-radius: 999px;
+            background: var(--accent);
+            color: #fff;
+            font-weight: 600;
+            transition: background 0.2s ease;
+        }
+
+        .cta:hover {
+            background: var(--accent-light);
+        }
+
+        @media (max-width: 800px) {
+            body {
+                padding: 1.5rem;
+            }
+
+            .post {
+                padding: 1.5rem;
+            }
+
+            .post-block {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="/blog/">&lt;- Back to blog</a>
+            <a href="mailto:kyle@directiv.ai">Contact</a>
+        </div>
+
+        <h1 class="title">directiv.ai blog</h1>
+        <p class="subtitle">
+            Perspectives on building safe, controllable, AI-enabled applications
+        </p>
+
+        <article class="post">
+            <h2 class="post-title">There's a Second OWASP Top Ten. We Were Already Building It.</h2>
+            <div class="post-meta">April 22, 2026 - 8 min read</div>
+            <div class="post-tldr">
+                <div class="post-tldr-label">TL;DR</div>
+                <p>The architecture was always the security story.</p>
+            </div>
+            <div class="post-block">
+                <div class="post-body">
+
+                    <p>I found out about the OWASP Top 10 for Agentic Applications 2026 the same way I learn about most
+                        things I probably should have already known about: late, and slightly embarrassed.</p>
+
+                    <p>Published in December 2025 by the OWASP GenAI Security Project, it's a structured list of the
+                        ten highest-impact security risks specific to AI agent systems. Think of it as the classic OWASP
+                        Web Application Top 10 — the one most engineers have at least nodded at during a security review
+                        — except instead of SQL injection and broken session management, you're looking at things like
+                        agents being steered toward attacker-controlled goals, agents inheriting credentials they were
+                        never supposed to touch, and multi-agent systems where a single corrupted input cascades faster
+                        than any human oversight process can catch it.</p>
+
+                    <!-- TODO: Add LOTR "second breakfast" meme image. Save to ../assets/lotr-second-top-ten.jpg -->
+                    <figure>
+                        <a href="../assets/lotr-second-top-ten.jpg" target="_blank" rel="noopener">
+                            <img src="../assets/lotr-second-top-ten.jpg"
+                                alt="We've had OWASP Top Ten for Web Apps, yes. But did you know about second top ten?" />
+                        </a>
+                        <figcaption>"We've had one, yes. But what about second top ten?" — Pippin, probably</figcaption>
+                    </figure>
+
+                    <p>The meme writes itself, honestly. There are now two of these things, the second one matters
+                        quite a bit for anyone building agentic systems in production, and based on my extremely
+                        unscientific survey of my professional network — most people have no idea it exists.</p>
+
+                    <p>Here's what I didn't expect when I finally sat down and read it: the déjà vu was immediate.</p>
+
+                    <p><strong>I've read this argument before</strong></p>
+
+                    <p>A few months back I wrote a post arguing that the core failure in enterprise AI isn't model
+                        quality — it's architecture. The framing was that LLMs are like the Infinite Improbability Drive
+                        from <em>Hitchhiker's Guide to the Galaxy</em>: wildly powerful, inherently unpredictable, and
+                        only useful inside a ship built to contain and direct that unpredictability. The thesis: models
+                        propose, systems decide. Treat the LLM as just another API. The surrounding system owns state,
+                        enforces rules, and determines what actually happens.</p>
+
+                    <p>Reading the OWASP Agentic Top 10, that framing kept showing up — just from the security side of
+                        the same argument.</p>
+
+                    <p>Not vaguely. Specifically. Let me point at the actual entries.</p>
+
+                    <p>ASI02, "Tool Misuse and Exploitation," recommends something OWASP calls a Policy Enforcement
+                        Middleware, or Intent Gate. An external enforcement point that validates agent intent and
+                        arguments, enforces schemas and rate limits, and issues short-lived credentials before any tool
+                        invocation actually executes. The entry explicitly says to treat LLM and planner outputs as
+                        untrusted — inputs to be validated, not instructions to be followed.</p>
+
+                    <blockquote class="pull-quote">
+                        Treat LLM or planner outputs as untrusted. A pre-execution Policy Enforcement Point validates
+                        intent and arguments, enforces schemas and rate limits, issues short-lived credentials, and
+                        revokes or audits on drift. <span>— OWASP Agentic Top 10, ASI02</span>
+                    </blockquote>
+
+                    <p>That's Open Policy Agent. Or more precisely, it's the architectural role I described for OPA in
+                        the <a href="/blog/models-propose-systems-decide/">earlier post</a>: the piece of the system
+                        that answers "is this action allowed?", "does it require approval?", and "what constraints
+                        apply?" using deterministic, auditable logic that has nothing to do with what the model thinks
+                        the answer should be. Your policies dictate those answers. Not some clanker.</p>
+
+                    <p>ASI08, "Cascading Failures," calls for immutable, time-stamped logs of all inter-agent messages,
+                        policy decisions, and execution outcomes — bound to cryptographic agent identities — to support
+                        forensic traceability and rollback when something unravels across a multi-agent chain.</p>
+
+                    <p>That's the append-only run ledger. The pattern I described as: every input, tool call, policy
+                        decision, and output gets written somewhere you can't quietly edit later. Not because you're
+                        planning a forensic investigation. Because when you need one and you don't have it, you're
+                        genuinely stuck. Models can hallucinate. Systems of record can't.</p>
+
+                    <p>And then ASI05 ("Unexpected Code Execution") and ASI10 ("Rogue Agents") both build around the
+                        same principle: the agent's non-deterministic behavior has to be bounded. Contained at the edge.
+                        An agent that can write back to its own instruction set, spawn subprocesses outside of
+                        controlled execution paths, or take actions that compound across downstream agents without a
+                        checkpoint — that's a system where the blast radius of any single bad decision is "whatever the
+                        agent happened to have access to."</p>
+
+                    <p>Which is almost exactly the sentence I wrote: <em>"the non-deterministic part of the system
+                            needs to end at the model boundary."</em></p>
+
+                    <p>Two teams working the same problem from different angles, arriving at the same answer.</p>
+
+                    <p><strong>What OWASP sees that I didn't fully work out</strong></p>
+
+                    <p>I want to be honest about what the Agentic Top 10 covers that I had glossed over.</p>
+
+                    <p>The multi-agent identity problem is real and underappreciated. When Agent A delegates a task to
+                        Agent B in a workflow, what credential does Agent B actually operate under? In most current
+                        implementations: whatever Agent A had, often with no formal scoping or time-bounding. OWASP
+                        calls this the "confused deputy problem dressed in new clothes," which is exactly right — a
+                        decades-old privilege escalation pattern that nobody thought to re-apply to systems where the
+                        deputy is an autonomous agent running at machine speed. The fix isn't obvious either.
+                        Traditional IAM wasn't built for non-human actors that spawn, delegate, and terminate
+                        dynamically across a workflow.</p>
+
+                    <p>The supply chain problem is also different in agentic systems than in regular software. A
+                        standard dependency vulnerability lives in your lockfile at build time. But agents that connect
+                        to external tools or MCP servers at runtime are making trust decisions in production, not at
+                        compile time. The tool's identity, capabilities, and metadata get consumed on the fly, and if
+                        any of those are spoofed or poisoned, the agent acts on bad information immediately. OWASP
+                        documented a case where a malicious npm package impersonating a legitimate MCP server BCC'd
+                        emails to an attacker. Silently. In production. That's not a build-time vulnerability. That's a
+                        runtime trust failure.</p>
+
+                    <p>Memory poisoning probably changes your threat model the most. A one-shot LLM call is stateless —
+                        a manipulated input affects one response, nothing downstream. An agent with persistent memory is
+                        different. A bad input in session one can alter behavior in session five. The attack surface
+                        isn't just "what is the model shown right now?" It's "what has been written to memory, by what
+                        source, and with what level of trust?" That's a data integrity problem, not a prompt engineering
+                        problem. And most current agentic systems treat memory like a scratchpad rather than a system of
+                        record.</p>
+
+                    <p><strong>What this actually changes</strong></p>
+
+                    <p>There was a reasonable counter-argument when I was making the original architectural case: this
+                        is overkill for most use cases. Not every AI feature needs a full policy enforcement layer and
+                        an immutable event ledger. Some of that is still true.</p>
+
+                    <p>But the OWASP Agentic Top 10 isn't a theoretical framework. Appendix D is a tracker of real
+                        incidents that happened in 2025 — right as agentic systems scaled from pilots to actual
+                        production deployments. A Replit agent hallucinated, deleted a production database, and then
+                        generated false outputs to cover its tracks. A Microsoft 365 Copilot zero-click exploit
+                        exfiltrated emails and files via a crafted email with no user interaction required. An MCP
+                        server impersonated a known email provider and silently BCC'd outbound mail to an attacker. An
+                        Amazon Q extension shipped a destructive prompt that risked wiping files.</p>
+
+                    <p>These aren't warnings about what could go wrong. They're a list of what already went wrong in
+                        the first twelve months after agentic systems got serious traction.</p>
+
+                    <p>The architectural argument I made back in January was "you need this to build something
+                        trustworthy." OWASP is making the same argument and adding: here are the people who found out
+                        the hard way that they didn't.</p>
+
+                    <p><a href="/blog/models-propose-systems-decide/">Models propose. Systems decide.</a></p>
+
+                    <p>OWASP just published 78 pages explaining why that's not a design preference — it's a security
+                        requirement. And December 2025 seems like a reasonable time to have worked that out, given the
+                        year we apparently just had.</p>
+
+                    <p>If you find yourself also thinking about these problems, let's nerd out. Drop me a line anytime
+                        at <a href="mailto:kyle@directiv.ai">kyle@directiv.ai</a>.</p>
+
+                </div>
+            </div>
+        </article>
+    </div>
+</body>
+
+</html>
