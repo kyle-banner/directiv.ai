@@ -1,0 +1,34 @@
+"Just put a human in the loop." It's the mic drop of every agentic application risk conversation.
+
+
+
+But HITL is becoming an escape hatch to dump system design failures onto unsuspecting coworkers. Three ways HITL goes wrong: 
+
+
+
+
+
+Responsibility Without Authority
+
+
+
+
+
+Alarm Fatigue
+
+
+
+Rubber-Stamp Automation
+
+
+
+HITL works when it's deliberate: rare decisions, true exceptions, moments the system can't anticipate. If your AI system requires constant human oversight to stay safe, it will never be safe.
+
+
+
+Human vigilance is bounded. Humans must intervene on purpose.
+
+
+
+Link to full post in the comments 👇
+
