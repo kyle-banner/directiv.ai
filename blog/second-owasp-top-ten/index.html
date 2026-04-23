@@ -283,7 +283,8 @@
                     </figure>
 
                     <p>As it turns out, there are far more OWASP Top Ten lists for k8s, mobile, etc. But the directiv.ai
-                        you know and love is focused on agentic apps. And as it turns out, many of the same ideas
+                        you know and love is focused on agentic apps. And wouldn't you believe it: they agree with
+                        little ol' me! Many of the same ideas
                         proposed in the Agentic OWASP Top 10 were already proposed in my first article.</p>
 
                     <p>I'll explore the similarities here, if only to reinforce the paradigm of "Models Propose, Systems
@@ -293,7 +294,7 @@
                         Middleware, or Intent Gate. An external enforcement point that validates agent intent and
                         arguments, enforces schemas and rate limits, and issues short-lived credentials before any tool
                         invocation actually executes. The entry explicitly says to treat LLM and planner outputs as
-                        untrusted — inputs to be validated, not instructions to be followed.</p>
+                        untrusted: inputs to be validated, not instructions to be followed.</p>
 
                     <blockquote class="pull-quote">
                         Treat LLM or planner outputs as untrusted. A pre-execution Policy Enforcement Point validates
@@ -302,8 +303,8 @@
                     </blockquote>
 
                     <p>That's the policy-as-code platform. I proposed a tool: Open Policy Agent. Said differently,
-                        that's the piece of the system
-                        that answers "is this action allowed?", "does it require approval?", and "what constraints
+                        that's the piece of the system that answers "is this action allowed?", "does it require
+                        approval?", and "what constraints
                         apply?" using deterministic, auditable logic that has nothing to do with what the model thinks
                         the answer should be. Your policies dictate those answers. Not some clanker.</p>
 
