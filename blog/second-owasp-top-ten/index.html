@@ -250,54 +250,41 @@
         </p>
 
         <article class="post">
-            <h2 class="post-title">There's a Second OWASP Top Ten. We Were Already Building It.</h2>
+            <h2 class="post-title">The control plane is the security plane</h2>
             <div class="post-meta">April 22, 2026 - 8 min read</div>
             <div class="post-tldr">
                 <div class="post-tldr-label">TL;DR</div>
-                <p>The architecture was always the security story.</p>
+                <p></p>
             </div>
             <div class="post-block">
                 <div class="post-body">
 
-                    <p>I found out about the OWASP Top 10 for Agentic Applications 2026 the same way I learn about most
-                        things I probably should have already known about: late, and slightly embarrassed.</p>
+                    <p>I've known and referenced the <a href="https://owasp.org/Top10/2025/">OWASP Top 10 Web
+                            Application
+                            Security Risks</a> for at least a decade now. I've also regularly referenced the API
+                        Security Top 10 for back-end AppSec. I only found out about the <a
+                            href="https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/">OWASP
+                            Top 10 for
+                            Agentic Applications</a> a month ago.</p>
 
                     <p>Published in December 2025 by the OWASP GenAI Security Project, it's a structured list of the
-                        ten highest-impact security risks specific to AI agent systems. Think of it as the classic OWASP
-                        Web Application Top 10 — the one most engineers have at least nodded at during a security review
-                        — except instead of SQL injection and broken session management, you're looking at things like
-                        agents being steered toward attacker-controlled goals, agents inheriting credentials they were
-                        never supposed to touch, and multi-agent systems where a single corrupted input cascades faster
-                        than any human oversight process can catch it.</p>
+                        ten highest-impact security risks specific to AI agent systems. It's the classic OWASP
+                        Top 10 approach, but this time it's for software that makes decisions, not just responses.</p>
 
                     <!-- TODO: Add LOTR "second breakfast" meme image. Save to ../assets/lotr-second-top-ten.jpg -->
                     <figure>
                         <a href="../assets/lotr-second-top-ten.jpg" target="_blank" rel="noopener">
                             <img src="../assets/lotr-second-top-ten.jpg"
-                                alt="We've had OWASP Top Ten for Web Apps, yes. But did you know about second top ten?" />
+                                alt="We've had OWASP Top Ten for Apps, yes. But did you know about second top ten?" />
                         </a>
-                        <figcaption>"We've had one, yes. But what about second top ten?" — Pippin, probably</figcaption>
                     </figure>
 
-                    <p>The meme writes itself, honestly. There are now two of these things, the second one matters
-                        quite a bit for anyone building agentic systems in production, and based on my extremely
-                        unscientific survey of my professional network — most people have no idea it exists.</p>
+                    <p>As it turns out, there are far more OWASP Top Ten lists for k8s, mobile, etc. But the directiv.ai
+                        you know and love is focused on agentic apps. And as it turns out, many of the same ideas
+                        proposed in the Agentic OWASP Top 10 were already proposed in my first article.</p>
 
-                    <p>Here's what I didn't expect when I finally sat down and read it: the déjà vu was immediate.</p>
-
-                    <p><strong>I've read this argument before</strong></p>
-
-                    <p>A few months back I wrote a post arguing that the core failure in enterprise AI isn't model
-                        quality — it's architecture. The framing was that LLMs are like the Infinite Improbability Drive
-                        from <em>Hitchhiker's Guide to the Galaxy</em>: wildly powerful, inherently unpredictable, and
-                        only useful inside a ship built to contain and direct that unpredictability. The thesis: models
-                        propose, systems decide. Treat the LLM as just another API. The surrounding system owns state,
-                        enforces rules, and determines what actually happens.</p>
-
-                    <p>Reading the OWASP Agentic Top 10, that framing kept showing up — just from the security side of
-                        the same argument.</p>
-
-                    <p>Not vaguely. Specifically. Let me point at the actual entries.</p>
+                    <p>I'll explore the similarities here, if only to reinforce the paradigm of "Models Propose, Systems
+                        Decide." I'll try not to break my arm patting myself on the back while doing so.</p>
 
                     <p>ASI02, "Tool Misuse and Exploitation," recommends something OWASP calls a Policy Enforcement
                         Middleware, or Intent Gate. An external enforcement point that validates agent intent and
@@ -311,29 +298,27 @@
                         revokes or audits on drift. <span>— OWASP Agentic Top 10, ASI02</span>
                     </blockquote>
 
-                    <p>That's Open Policy Agent. Or more precisely, it's the architectural role I described for OPA in
-                        the <a href="/blog/models-propose-systems-decide/">earlier post</a>: the piece of the system
+                    <p>That's the policy-as-code platform. I proposed a tool: Open Policy Agent. Said differently,
+                        that's the piece of the system
                         that answers "is this action allowed?", "does it require approval?", and "what constraints
                         apply?" using deterministic, auditable logic that has nothing to do with what the model thinks
                         the answer should be. Your policies dictate those answers. Not some clanker.</p>
 
                     <p>ASI08, "Cascading Failures," calls for immutable, time-stamped logs of all inter-agent messages,
-                        policy decisions, and execution outcomes — bound to cryptographic agent identities — to support
+                        policy decisions, and execution outcomes to support
                         forensic traceability and rollback when something unravels across a multi-agent chain.</p>
 
                     <p>That's the append-only run ledger. The pattern I described as: every input, tool call, policy
                         decision, and output gets written somewhere you can't quietly edit later. Not because you're
-                        planning a forensic investigation. Because when you need one and you don't have it, you're
+                        Rust Cohle. Because when you need one and you don't have it, you're
                         genuinely stuck. Models can hallucinate. Systems of record can't.</p>
 
                     <p>And then ASI05 ("Unexpected Code Execution") and ASI10 ("Rogue Agents") both build around the
-                        same principle: the agent's non-deterministic behavior has to be bounded. Contained at the edge.
+                        same principle: the agent's non-deterministic behavior has to be bounded.
                         An agent that can write back to its own instruction set, spawn subprocesses outside of
                         controlled execution paths, or take actions that compound across downstream agents without a
-                        checkpoint — that's a system where the blast radius of any single bad decision is "whatever the
-                        agent happened to have access to."</p>
-
-                    <p>Which is almost exactly the sentence I wrote: <em>"the non-deterministic part of the system
+                        checkpoint? That's a system where the blast radius of any single bad decision is "whatever the
+                        agent happened to have access to." In other words, <em>"the non-deterministic part of the system
                             needs to end at the model boundary."</em></p>
 
                     <p>Two teams working the same problem from different angles, arriving at the same answer.</p>
@@ -342,7 +327,7 @@
 
                     <p>I want to be honest about what the Agentic Top 10 covers that I had glossed over.</p>
 
-                    <p>The multi-agent identity problem is real and underappreciated. When Agent A delegates a task to
+                    <!-- <p>The multi-agent identity problem is real and underappreciated. When Agent A delegates a task to
                         Agent B in a workflow, what credential does Agent B actually operate under? In most current
                         implementations: whatever Agent A had, often with no formal scoping or time-bounding. OWASP
                         calls this the "confused deputy problem dressed in new clothes," which is exactly right — a
@@ -366,7 +351,7 @@
                         isn't just "what is the model shown right now?" It's "what has been written to memory, by what
                         source, and with what level of trust?" That's a data integrity problem, not a prompt engineering
                         problem. And most current agentic systems treat memory like a scratchpad rather than a system of
-                        record.</p>
+                        record.</p> -->
 
                     <p><strong>What this actually changes</strong></p>
 
@@ -375,15 +360,18 @@
                         an immutable event ledger. Some of that is still true.</p>
 
                     <p>But the OWASP Agentic Top 10 isn't a theoretical framework. Appendix D is a tracker of real
-                        incidents that happened in 2025 — right as agentic systems scaled from pilots to actual
-                        production deployments. A Replit agent hallucinated, deleted a production database, and then
+                        incidents that happened in 2025, right as agentic systems scaled from pilots to actual
+                        production deployments.</p>
+
+                    <!-- A Replit agent hallucinated, deleted a production database, and then
                         generated false outputs to cover its tracks. A Microsoft 365 Copilot zero-click exploit
                         exfiltrated emails and files via a crafted email with no user interaction required. An MCP
                         server impersonated a known email provider and silently BCC'd outbound mail to an attacker. An
-                        Amazon Q extension shipped a destructive prompt that risked wiping files.</p>
+                        Amazon Q extension shipped a destructive prompt that risked wiping files.</p> -->
 
                     <p>These aren't warnings about what could go wrong. They're a list of what already went wrong in
-                        the first twelve months after agentic systems got serious traction.</p>
+                        the first twelve months after agentic systems got serious traction. More on that in a future
+                        post.</p>
 
                     <p>The architectural argument I made back in January was "you need this to build something
                         trustworthy." OWASP is making the same argument and adding: here are the people who found out
@@ -391,7 +379,7 @@
 
                     <p><a href="/blog/models-propose-systems-decide/">Models propose. Systems decide.</a></p>
 
-                    <p>OWASP just published 78 pages explaining why that's not a design preference — it's a security
+                    <p>OWASP just published 78 pages explaining why that's not a design preference. No, it's a security
                         requirement. And December 2025 seems like a reasonable time to have worked that out, given the
                         year we apparently just had.</p>
 
